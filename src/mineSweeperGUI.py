@@ -217,8 +217,12 @@ class MineSweeperGUI(superGUI.Ui_MainWindow):
                 if self.label.ms_board.game_board[i// self.pixSize][j// self.pixSize] == 10 \
                     and self.label.ms_board.mouse_state == 4:
                     self.ai(i // self.pixSize, j // self.pixSize)
-
-            self.label.ms_board.step('lr', (i, j))
+                    self.label.ms_board.step('lr', (i, j))
+                elif self.label.ms_board.game_board[i// self.pixSize][j// self.pixSize] >=1 \
+                    and self.label.ms_board.game_board[i// self.pixSize][j// self.pixSize] <=8:
+                    self.mineAreaLeftAndRightPressed(i, j)
+                    self.label.ms_board.step('lr', (i,j))
+                    self.label.ms_board.step('rr', (i,j))
 
             if self.label.ms_board.game_board_state == 3:
                 self.gameWin()
